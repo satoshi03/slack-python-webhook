@@ -16,7 +16,7 @@ import json
 DEFAULT_WEBHOOK_URL = "https://hooks.slack.com/services/"
 
 
-class SlackBot():
+class Slack():
 
     def __init__(self, token="", url=DEFAULT_WEBHOOK_URL):
         self.token = token
