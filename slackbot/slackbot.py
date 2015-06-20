@@ -1,43 +1,48 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 # 3rd party library
-import urllib2
-import urllib
+try:
+    from urllib.parse import urljoin
+    from urllib.parse import urlencode
+    import urllib.request as urlrequest
+except ImportError:
+    from urlparse import urljoin
+    from urllib import urlencode
+    import urllib2 as urlrequest
 import json
 
 
-WEBHOOK_URL_PREFIX = "https://hooks.slack.com/services/"
+DEFAULT_WEBHOOK_URL = "https://hooks.slack.com/services/"
 
 
 class SlackBot():
 
-    def ___init__(self, token="", channel="", username="", icon_emoji=""):
+    def __init__(self, token="", url=DEFAULT_WEBHOOK_URL):
         self.token = token
-        self.channel = channel
-        self.username = username
-        self.icon_emoji = icon_emoji
+        self.url = url
 
-    def notify(self, message):
-        payload = self.make_payload(message)
+    def send_message(self, message, channel="", username="", icon_emoji="", icon_url=""):
+
+        def make_payload(message, channel, username, icon_emoji):
+            payload = {}
+            if channel:
+                payload["channel"] = channel
+            if username:
+                payload["username"] = username
+            if icon_emoji:
+                payload["icon_emoji"] = icon_emoji
+            if icon_url:
+                payload["icon_url"] = icon_url
+            payload["text"] = message
+            return payload
+
+        payload = make_payload(message, channel, username, icon_emoji)
+        self.send(payload)
+
+    def send(self, payload):
         payload_json = json.dumps(payload)
-        data = urllib.urlencode({"payload": payload_json})
-        url = urllib.parse.urljoin(WEBHOOK_URL_PREFIX, self.token)
-        req = urllib2.Request(url)
-        req.add_data(data)
-        urllib2.urlopen(req)
-
-    def make_payload(self, message):
-        payload = {}
-        if self.channel:
-            payload["channel"] = self.channel
-        if self.username:
-            payload["username"] = self.username
-        if self.icon_emoji:
-            payload["icon_emoji"] = self.icon_emoji
-        payload["text"] = message
-        return payload
-
-
-class SlackBotException(Exception):
-    pass
+        data = urlencode({"payload": payload_json})
+        req_url = urljoin(self.url, self.token)
+        req = urlrequest.Request(req_url)
+        urlrequest.urlopen(req, data.encode('utf-8'))
