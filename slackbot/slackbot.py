@@ -22,9 +22,9 @@ class Slack():
         self.token = token
         self.url = url
 
-    def send_message(self, message, channel="", username="", icon_emoji="", icon_url=""):
+    def notify(self, message, channel="", username="", icon_emoji="", icon_url="", mrkdwn=False):
 
-        def make_payload(message, channel, username, icon_emoji):
+        def make_payload(message, channel, username, icon_emoji, mrkdwn):
             payload = {}
             if channel:
                 payload["channel"] = channel
@@ -34,10 +34,12 @@ class Slack():
                 payload["icon_emoji"] = icon_emoji
             if icon_url:
                 payload["icon_url"] = icon_url
+            if mrkdwn:
+                payload["mrkdwn"] = mrkdwn
             payload["text"] = message
             return payload
 
-        payload = make_payload(message, channel, username, icon_emoji)
+        payload = make_payload(message, channel, username, icon_emoji, mrkdwn)
         self.send(payload)
 
     def send(self, payload):
