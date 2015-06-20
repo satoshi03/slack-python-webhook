@@ -20,8 +20,8 @@ $ sudo python setup.py install
 <pre>
 > import slackbot
 > slackbot = slackbot.Slack(token='T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX')
-> slackbot.notify("Maguro is a sushi", "#sushi")
-> slackbot.notify("Tako is a sushi", "#sushi", username='sushi-bot', icon_emoji=':sushi:')
+> slackbot.notify("Maguro is a sushi")
+> slackbot.notify("Tako is a sushi", channel="#sushi", username='sushi-bot', icon_emoji=':sushi:')
 </pre>
 
 
