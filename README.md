@@ -20,11 +20,15 @@ $ sudo python setup.py install
 
 Get a token of slack webhook on [slack page](https://my.slack.com/services/new/incoming-webhook/).
 
-In case that you want to send a simple message:
-
+Instantiate:
 <pre>
 > import slackbot
 > slackbot = slackbot.Slack(token="T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX")
+</pre>
+
+In case that you want to send a simple message:
+
+<pre>
 > slackbot.notify(text="Maguro is a sushi")
 </pre>
 
