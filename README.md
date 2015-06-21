@@ -7,7 +7,7 @@ Very simple slack client by using incoming-webhook.
 To install slack-python-webhook, simply:
 
 <pre>
-$ sudo pip install -U git+https://github.com/satoshi03/slack-python-webhook
+$ sudo pip install slackweb
 </pre>
 
 or from source:
