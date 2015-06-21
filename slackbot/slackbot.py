@@ -21,30 +21,21 @@ class Slack():
     def __init__(self, token="", url=DEFAULT_WEBHOOK_URL):
         self.token = token
         self.url = url
+        self.opener = urlrequest.build_opener(urlrequest.HTTPHandler())
 
-    def notify(self, message, channel="", username="", icon_emoji="", icon_url="", mrkdwn=False):
-
-        def make_payload(message, channel, username, icon_emoji, mrkdwn):
-            payload = {}
-            if channel:
-                payload["channel"] = channel
-            if username:
-                payload["username"] = username
-            if icon_emoji:
-                payload["icon_emoji"] = icon_emoji
-            if icon_url:
-                payload["icon_url"] = icon_url
-            if mrkdwn:
-                payload["mrkdwn"] = mrkdwn
-            payload["text"] = message
-            return payload
-
-        payload = make_payload(message, channel, username, icon_emoji, mrkdwn)
-        self.send(payload)
+    def notify(self, **kwargs):
+        """
+        Send message to slack API
+        """
+        return self.send(kwargs)
 
     def send(self, payload):
+        """
+        Send payload to slack API
+        """
         payload_json = json.dumps(payload)
         data = urlencode({"payload": payload_json})
         req_url = urljoin(self.url, self.token)
         req = urlrequest.Request(req_url)
-        urlrequest.urlopen(req, data.encode('utf-8'))
+        response = self.opener.open(req, data.encode('utf-8')).read()
+        return response.decode('utf-8')
