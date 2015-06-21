@@ -1,6 +1,6 @@
 # package information.
 INFO = dict(
-    name        = "slackbot",
+    name        = "slackweb",
     description = "slack bot for incomming webhook",
     author      = "satoshi03",
     author_email = "innamisatoshi@gmail.com",
