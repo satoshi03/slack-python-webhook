@@ -15,7 +15,7 @@ import version
 setup_options = info.INFO
 setup_options["version"] = version.VERSION
 setup_options.update(dict(
-  packages         = ['slackbot'],
+  packages         = ['slackweb'],
 ))
 
 setup(**setup_options)

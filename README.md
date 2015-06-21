@@ -22,8 +22,8 @@ Get a token of slack webhook on [slack page](https://my.slack.com/services/new/i
 
 Instantiate:
 <pre>
-> import slackbot
-> slackbot = slackbot.Slack(token="T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX")
+> import slackweb
+> slackbot = slackweb.Slack(token="T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX")
 </pre>
 
 In case that you want to send a simple message:
