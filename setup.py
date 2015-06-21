@@ -15,7 +15,6 @@ import version
 setup_options = info.INFO
 setup_options["version"] = version.VERSION
 setup_options.update(dict(
-  install_requires = open('requirements.txt').read().splitlines(),
   packages         = ['slackbot'],
 ))
 

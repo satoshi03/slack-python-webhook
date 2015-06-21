@@ -34,7 +34,7 @@ In case that you want to send a custom message:
 > slackbot.notify(text="Tako is a sushi", channel="#sushi", username="sushi-bot", icon_emoji=":sushi:")
 </pre>
 
-If you want to use richly-formatted massages.
+If you want to use richly-formatted massages:
 
 <pre>
 > attachments = []
@@ -42,4 +42,9 @@ If you want to use richly-formatted massages.
 > attachments.append(attachment)
 > slackbot.notify(attachments=attachments)
 </pre>
+
+More detail description of message formatting, refer according pages:
+
+- [Message Formatting](https://api.slack.com/docs/formatting)
+- [Attachments](https://api.slack.com/docs/attachments)
 
