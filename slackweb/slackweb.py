@@ -13,13 +13,9 @@ except ImportError:
 import json
 
 
-DEFAULT_WEBHOOK_URL = "https://hooks.slack.com/services/"
-
-
 class Slack():
 
-    def __init__(self, token="", url=DEFAULT_WEBHOOK_URL):
-        self.token = token
+    def __init__(self, url=""):
         self.url = url
         self.opener = urlrequest.build_opener(urlrequest.HTTPHandler())
 
