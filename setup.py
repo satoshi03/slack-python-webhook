@@ -20,7 +20,7 @@ setup_options = dict(
       "License :: OSI Approved :: MIT License"
     ]
 )
-setup_options["version"] = "1.0.4"
+setup_options["version"] = "1.0.5"
 setup_options.update(dict(
   packages         = ['slackweb'],
 ))
